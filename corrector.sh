@@ -8,12 +8,35 @@ cat hello
 echo
 while read p; do
 	OUT=$(./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
-	if grep -q $OUT "correct.out"; then
+	if grep -q $OUT "correct_easy_tests.out"; then
 		echo -e "[`whoami`]${GREEN}[PASSED]${NC}[${COUNTER}]"
 	else
-		echo -e "[`whoami`]${RED}[FAILED]${NC}[${COUNTER}][${OUT}]"
+		echo -e "[`whoami`]${RED}[FAILED]${NC}[${COUNTER}][${p}]"
 	fi
 	COUNTER=$((COUNTER + 1))
 done < ./test_cases/easy_tests
+echo ./ascii/skeleton
 echo
-echo 
+echo "HARD? HAHA :D"
+COUNTER=1
+while read p; do
+	OUT=$(./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
+	if grep -q $OUT "correct_hard_tests.out"; then
+		echo -e "[`whoami`]${GREEN}[PASSED]${NC}[${COUNTER}]"
+	else
+		echo -e "[`whoami`]${RED}[FAILED]${NC}[${COUNTER}][${p}]"
+	fi
+	COUNTER=$((COUNTER + 1))
+done < ./test_cases/hard_tests
+echo "ERROR?"
+while read p; do
+	./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
+done < ./test_cases/multiple_or_no_solution
+while read p; do
+	OUT=$(./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
+	if [ $OUT == "Error" ] && [ $OUT == "error" ]; then
+		echo "[OK]"
+	else
+		echo "[KO]"
+	fi
+done < ./test_cases/no_solution
