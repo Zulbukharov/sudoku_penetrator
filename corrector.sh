@@ -7,11 +7,13 @@ COUNTER=1
 cat hello
 echo
 while read p; do
-	OUT=$(./a.out $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
+	OUT=$(./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
 	if grep -q $OUT "correct.out"; then
 		echo -e "[`whoami`]${GREEN}[PASSED]${NC}[${COUNTER}]"
 	else
 		echo -e "[`whoami`]${RED}[FAILED]${NC}[${COUNTER}][${OUT}]"
 	fi
 	COUNTER=$((COUNTER + 1))
-done < easy_tests
+done < ./test_cases/easy_tests
+echo
+echo 

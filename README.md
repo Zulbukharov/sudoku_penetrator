@@ -5,10 +5,10 @@ http://sudopedia.enjoysudoku.com/Invalid_Test_Cases.html
 Если выводит error при > 1 решении, то бонус.
 Если нет решений и работает то -%
 
-https://github.com/Zulbukharov/sudoku_penetrator
+### https://github.com/Zulbukharov/sudoku_penetrator
 
-для запуска, сбилдить main sudoku и переместить в репу sudoku_penetrator
+> для запуска, сбилдить main sudoku и переместить в репу sudoku_penetrator 
 
-запустить ./correcotr.sh
+> запустить ./corrector.sh
 
-ждать...
+> ждать...
