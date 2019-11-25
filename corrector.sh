@@ -4,7 +4,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 COUNTER=1
-cat hello
+cat ./ascii/hello
 echo
 while read p; do
 	OUT=$(./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
@@ -28,15 +28,3 @@ while read p; do
 	fi
 	COUNTER=$((COUNTER + 1))
 done < ./test_cases/hard_tests
-echo "ERROR?"
-while read p; do
-	./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
-done < ./test_cases/multiple_or_no_solution
-while read p; do
-	OUT=$(./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
-	if [ $OUT == "Error" ] && [ $OUT == "error" ]; then
-		echo "[OK]"
-	else
-		echo "[KO]"
-	fi
-done < ./test_cases/no_solution
