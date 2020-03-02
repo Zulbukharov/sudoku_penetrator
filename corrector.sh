@@ -15,7 +15,7 @@ while read p; do
 	fi
 	COUNTER=$((COUNTER + 1))
 done < ./test_cases/easy_tests
-echo ./ascii/skeleton
+cat ./ascii/skeleton
 echo
 echo "HARD? HAHA :D"
 COUNTER=1
@@ -28,3 +28,16 @@ while read p; do
 	fi
 	COUNTER=$((COUNTER + 1))
 done < ./test_cases/hard_tests
+echo
+echo "Multiple or no solution"
+COUNTER=1
+while read p; do
+	OUT=$(./main $p | tr  '\n' ' ' | tr '$' ' ' | sed -e "s/ //g")
+	# echo "$OUT"
+	if [ "$OUT" = "Error" ]; then
+		echo -e "[`whoami`]${GREEN}[PASSED]${NC}[${COUNTER}]"
+	else
+		echo -e "[`whoami`]${RED}[FAILED]${NC}[${COUNTER}][${p}]"
+	fi
+	COUNTER=$((COUNTER + 1))
+done < ./test_cases/no_solution
